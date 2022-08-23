@@ -1,0 +1,29 @@
+spring:
+  config:
+    active:
+     on-profile: test   #spring.profiles.active 속성 대체 spring.profiles 는 2.4.1 이상 버전부터 Deprecated 되었다.
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:tc:mysql:8:///
+#    url: jdbc:mysql://localhost:33006/test_db?autoReconnect=true&serverTimezone=Asia/Seoul
+    username: test_user
+    password: 1234
+  jpa:
+    database-platform:  org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace #파라미터 확인
